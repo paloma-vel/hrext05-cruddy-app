@@ -59,3 +59,7 @@ typings/
 
 # next.js build output
 .next
+
+# Ignore docs files
+styles/.sass-cache
+styles/.sass-cache/*

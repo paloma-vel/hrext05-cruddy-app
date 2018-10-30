@@ -1,0 +1,24 @@
+body {
+  display: flex;
+  font-family: 'Muli', sans-serif; }
+  body h1 {
+    text-align: center; }
+
+#container {
+  margin: 0 auto;
+  padding: 20px;
+  min-width: 40%; }
+  #container form {
+    display: flex; }
+    #container form #list-input {
+      flex: 1; }
+  #container #list-container {
+    padding: 0;
+    list-style-type: none; }
+    #container #list-container li {
+      padding: 10px;
+      background-color: aliceblue;
+      border-radius: 5px;
+      margin: 10px 0px; }
+
+/*# sourceMappingURL=styles.css.map */

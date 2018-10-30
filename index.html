@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HREXT05 Cruddy App</title>
+    <title>HREXT05 CRUD App</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="app.js"></script>
-    <link rel="stylesheet" href="app.css">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
   </head>
   <body>
-    <input type="text" class="text-input" id="theKey" placeholder="Enter some text">
-    <button class="add-text-btn">Add text</button>
-    <button class="clear-cache-btn">Clear Entries</button>
-    <div class="show-text"></div>
+    <div id="container">
+      <h1>To Do</h1>
+      <form>
+        <input id="list-input" type="text" class="text-input"  placeholder="Enter some text">
+        <button id="add-text-btn" class="button">Add text</button>
+        <button id="clear-cache-btn" class="button">Clear Entries</button>
+      </form>
+    
+      <ul id="list-container" class="list"></ul>
+    </div>
+    
   </body>
 </html>
