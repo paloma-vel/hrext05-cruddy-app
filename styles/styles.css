@@ -1,6 +1,11 @@
+/*
+https://www.design-seeds.com/wander/sea/color-sea-40/
+https://www.design-seeds.com/seasons/autumn/color-season-7/
+*/
 body {
   display: flex;
-  font-family: 'Muli', sans-serif; }
+  font-family: "Muli", sans-serif;
+  color: #333333; }
   body h1 {
     text-align: center; }
 
@@ -11,14 +16,41 @@ body {
   #container form {
     display: flex; }
     #container form #list-input {
-      flex: 1; }
+      flex: 1;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #333333;
+      font-family: "Muli", sans-serif; }
+    #container form button {
+      border-radius: 5px;
+      margin-left: 5px;
+      border: 1px solid #333333;
+      background-color: #A7CFCE;
+      color: #333333; }
+      #container form button:hover {
+        background-color: #83BBB4; }
   #container #list-container {
     padding: 0;
     list-style-type: none; }
     #container #list-container li {
       padding: 10px;
-      background-color: aliceblue;
+      background-color: #EEEBE6;
       border-radius: 5px;
       margin: 10px 0px; }
+    #container #list-container button {
+      float: right;
+      background-color: #E7DED1;
+      border: none;
+      border-radius: 5px;
+      padding: 3px 12px; }
+      #container #list-container button:hover {
+        background-color: #CF4E44; }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  #container {
+    min-width: 60%; } }
+@media (max-width: 768px) {
+  #container {
+    min-width: 90%; } }
 
 /*# sourceMappingURL=styles.css.map */

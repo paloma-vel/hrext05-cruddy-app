@@ -1,6 +1,21 @@
+$font: 'Muli', sans-serif;
+$color-dark: #333333;
+$color-bg: #EEEBE6;
+
+$color-bg-button: #E7DED1;
+$color-bg-button-hover: #CF4E44;
+
+$color-button: #A7CFCE;
+$color-hover: #83BBB4;
+/*
+https://www.design-seeds.com/wander/sea/color-sea-40/
+https://www.design-seeds.com/seasons/autumn/color-season-7/
+*/
+
 body {
 	display: flex;
-	font-family: 'Muli', sans-serif;
+	font-family: $font;
+	color: $color-dark;
 
 	h1 {
 		text-align: center;
@@ -17,19 +32,62 @@ body {
 
 		#list-input {
 			flex: 1;
+			padding: 10px;
+		    border-radius: 5px;
+		    border: 1px solid $color-dark;
+		    font-family: $font;
+		}
+
+		button {
+			border-radius: 5px;
+			margin-left: 5px;
+			border: 1px solid $color-dark;
+			background-color: $color-button;
+			color: $color-dark;
+
+			&:hover {
+				background-color: $color-hover;
+			}
 		}
 	}
 
 	#list-container {
 		padding: 0;
-    list-style-type: none;
+    	list-style-type: none;
 
-    li {
-    	padding: 10px;
-	    background-color: aliceblue;
-	    border-radius: 5px;
-			margin: 10px 0px;
-    }
+	    li {
+	    	padding: 10px;
+		    background-color: $color-bg;
+		    border-radius: 5px;
+				margin: 10px 0px;
+	    }
+
+	    button {
+	    	float: right;
+	    	background-color: #E7DED1;
+		    border: none;
+		    border-radius: 5px;
+			padding: 3px 12px;
+
+		    &:hover {
+		    	background-color: $color-bg-button-hover;
+		    }
+	    }
 	}
 
+}
+
+$tablet: "(min-width: 768px) and (max-width: 1023px)";
+$smartphone: "(max-width: 768px)";
+
+@media #{$tablet} {
+	#container {
+		min-width: 60%;
+	}
+}
+
+@media #{$smartphone} {
+	#container {
+		min-width: 90%;
+	}
 }

@@ -4,7 +4,7 @@ $(document).ready(function(){
     console.log(localStorage);
     var data = JSON.parse(localStorage.getItem('key'));
     for (var index in data) {
-      $('#list-container').append(`<li id="item-${index}">${data[index].name}</li>`)
+      $('#list-container').append(`<li id="item-${index}">${data[index].name}<button class="delete-btn">x</button></li>`)
     }
   }
 
@@ -30,7 +30,7 @@ $(document).ready(function(){
       // localStorage.setItem('key', '{"1": {"name": "Walk dog", "crossed" : false}, "2": {"name": "Wash dishes", "crossed" : false}}')
     }
 
-    $('#list-container').append(`<li id="item-${newIndex}">${curTextValue}</li>`)
+    $('#list-container').append(`<li id="item-${newIndex}">${curTextValue}<button class="delete-btn">x</button></li>`)
 
     $('#list-input').val("");
   };
@@ -38,14 +38,25 @@ $(document).ready(function(){
   // event listener: if button clicked, add item
   $("#add-text-btn").on("click", addItem);
 
+// DELETE INDIVIDUAL ITEM
 
+  $('.delete-btn').on("click", function() {
+    $(this).parent().remove();
+    var $id = $(this).parent().attr("id").slice(5);
+    var data = JSON.parse(localStorage.getItem('key'));
+    console.log(data[$id])
+    delete data[$id];
+    localStorage.setItem('key', JSON.stringify(data));
+    if ($('#list-container').is(':empty')) {
+      localStorage.clear()
+    }
+  });
 
-// REMOVE ITEM(S)
+// REMOVE ALL ITEMS
 
-  // listen for click event (del)
+  // event listener
   $("#clear-cache-btn").on("click", function(){
     localStorage.clear()
-
   });
 
 });
