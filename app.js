@@ -1,5 +1,13 @@
 $(document).ready(function(){
 
+  if (localStorage.getItem('key') && $('#list-container').is(':empty')) {
+    console.log(localStorage);
+    var data = JSON.parse(localStorage.getItem('key'));
+    for (var index in data) {
+      $('#list-container').append(`<li id="item-${index}">${data[index].name}</li>`)
+    }
+  }
+
 // CREATE ITEM
 
   var addItem = function(e){
