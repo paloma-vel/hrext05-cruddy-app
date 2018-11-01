@@ -1,9 +1,10 @@
 $font: 'Muli', sans-serif;
 $color-dark: #333333;
-$color-bg: #EEEBE6;
+$color-list-item: #EEEBE6;
 
-$color-bg-button: #E7DED1;
-$color-bg-button-hover: #CF4E44;
+$color-list-button: #E7DED1;
+$color-delete-hover: #CF4E44;
+$color-edit-hover: #d8cfc3;
 
 $color-button: #A7CFCE;
 $color-hover: #83BBB4;
@@ -49,6 +50,7 @@ body {
 				background-color: $color-hover;
 			}
 		}
+
 	}
 
 	#list-container {
@@ -57,21 +59,36 @@ body {
 
 	    li {
 	    	padding: 10px;
-		    background-color: $color-bg;
+		    background-color: $color-list-item;
 		    border-radius: 5px;
 				margin: 10px 0px;
+				min-height: 20px;
 	    }
 
 	    button {
 	    	float: right;
-	    	background-color: #E7DED1;
+	    	background-color: $color-list-button;
 		    border: none;
 		    border-radius: 5px;
-			padding: 3px 12px;
+				padding: 5px 10px;
+				height: 24px;
+    		width: 30px;
+	    }
 
-		    &:hover {
-		    	background-color: $color-bg-button-hover;
-		    }
+	    .delete-btn {
+	    	margin: -2px 0px 2px 2px;
+
+	    	&:hover {
+	    		background-color: $color-delete-hover;
+	    	}
+	    }
+
+	    .edit-btn {
+	    	margin: -2px 2px;
+
+	    	&:hover {
+	    		background-color: $color-edit-hover;
+	    	}
 	    }
 	}
 

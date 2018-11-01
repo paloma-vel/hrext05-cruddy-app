@@ -36,15 +36,24 @@ body {
       padding: 10px;
       background-color: #EEEBE6;
       border-radius: 5px;
-      margin: 10px 0px; }
+      margin: 10px 0px;
+      min-height: 20px; }
     #container #list-container button {
       float: right;
       background-color: #E7DED1;
       border: none;
       border-radius: 5px;
-      padding: 3px 12px; }
-      #container #list-container button:hover {
+      padding: 5px 10px;
+      height: 24px;
+      width: 30px; }
+    #container #list-container .delete-btn {
+      margin: -2px 0px 2px 2px; }
+      #container #list-container .delete-btn:hover {
         background-color: #CF4E44; }
+    #container #list-container .edit-btn {
+      margin: -2px 2px; }
+      #container #list-container .edit-btn:hover {
+        background-color: #d8cfc3; }
 
 @media (min-width: 768px) and (max-width: 1023px) {
   #container {
