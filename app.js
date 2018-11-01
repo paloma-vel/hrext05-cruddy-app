@@ -1,20 +1,38 @@
 $(document).ready(function(){
 
+// READ ITEMS
 var getData = function() {
-  return JSON.parse(localStorage.getItem('key'));
+  return JSON.parse(localStorage.getItem('todo-items'));
 }
 
 var buttons = '<button class="delete-btn"><i class="fas fa-times"></i></button><button class="edit-btn"><i class="fas fa-pencil-alt"></i></button>'
 
-// READ
 
+// DELETE INDIVIDUAL ITEM
+var handleDeleteClick = function() {
+  console.log("clicked")
+  var $item = $(this).parent();
+  var id = $item.data("todoid");
+  var data = getData();
+  data.splice(data.findIndex(function(element) {
+    return element.id == id;
+  }), 1);
+  localStorage.setItem('todo-items', JSON.stringify(data));
+  if ($('#list-container').is(':empty')) {
+    localStorage.clear();
+  }
+  $item.remove();
+}
+
+// READ ON PAGE LOAD
 var readItems = function() {
-  if (localStorage.getItem('key') && $('#list-container').is(':empty')) {
+  if (localStorage.getItem('todo-items') && $('#list-container').is(':empty')) {
     var data = getData();
-    for (var index in data) {
-      var li = `<li id="item-${index}"><span>${data[index].name}</span>${buttons}</li>`;
+    data.forEach(function (el) {
+      var li = `<li id="item-${el.id}" data-todoid="${el.id}"><span>${el.name}</span>${buttons}</li>`;
       $('#list-container').append(li);
-    }
+    });
+    $('.delete-btn').on("click", handleDeleteClick);
   }
 }
 
@@ -27,27 +45,34 @@ readItems();
     var curTextValue = $('#list-input').val(); // reading from <input>
     if (!curTextValue) { return }; // if <input> is empty, do nothing
 
-    if (!localStorage.getItem('key')) {
-      localStorage.setItem('key', '{"1": {"name": "' + curTextValue + '", "completed" : false}}');
-      var newIndex = 1;
+    if (!localStorage.getItem('todo-items')) {
+      localStorage.setItem('todo-items', '[{"id": 1, "name": "' + curTextValue + '", "completed" : false}]');
+      var nextID = 1;
 
     } else {
 
-      // Take the object out of localStorage & JSON.parse it
+      // Take the array out of localStorage & JSON.parse it
       var data = getData();
-      var allIndexes = Object.keys(data).map(x => parseInt(x)).sort();
-      var newIndex = allIndexes[allIndexes.length-1]+1;
+      var length = data.length;
+      console.log(length);
+      if (length > 0) {
+        var nextID = data[length - 1].id + 1;
+      } else {
+        var nextID = 1;
+      }
 
-      // Append new item to the object
-      data[newIndex] = {"name": curTextValue, "completed" : false};
+      // Append new item to the array
+      data.push({"id": nextID, "name": curTextValue, "completed" : false});
 
       // JSON.stringify it & save it back in
-      localStorage.setItem('key', JSON.stringify(data));
-      // localStorage.setItem('key', '{"1": {"name": "Walk dog", "completed" : false}, "2": {"name": "Wash dishes", "completed" : false}}')
+      localStorage.setItem('todo-items', JSON.stringify(data));
+      // localStorage.setItem('todo-items', '{"1": {"name": "Walk dog", "completed" : false}, "2": {"name": "Wash dishes", "completed" : false}}')
     }
 
-    var li = `<li id="item-${newIndex}"><span>${curTextValue}</span>${buttons}</li>`;
+    var li = `<li id="item-${nextID}" data-todoid="${nextID}"><span>${curTextValue}</span>${buttons}</li>`;
     $('#list-container').append(li);
+
+    $('#item-' + nextID + ' .delete-btn').on("click", handleDeleteClick);
     
     //window.location.reload(true);
     $('#list-input').val("");
@@ -55,20 +80,6 @@ readItems();
 
   // event listener: if button clicked, add item
   $("#add-text-btn").on("click", addItem);
-
-// DELETE INDIVIDUAL ITEM
-
-  $('.delete-btn').on("click", function() {
-    console.log("clicked")
-    $(this).parent().remove();
-    var $id = $(this).parent().attr("id").slice(5);
-    var data = getData();
-    delete data[$id];
-    localStorage.setItem('key', JSON.stringify(data));
-    if ($('#list-container').is(':empty')) {
-      localStorage.clear()
-    }
-  });
 
 // DELETE ALL ITEMS AT ONCE
 
