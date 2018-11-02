@@ -26,14 +26,17 @@ body {
       margin-left: 5px;
       border: 1px solid #333333;
       background-color: #A7CFCE;
-      color: #333333; }
+      color: #333333;
+      padding: 15px;
+      font-family: "Muli", sans-serif; }
       #container form button:hover {
         background-color: #83BBB4; }
   #container #list-container {
     padding: 0;
-    list-style-type: none; }
+    list-style-type: none;
+    min-height: 300px; }
     #container #list-container li {
-      padding: 10px;
+      padding: 20px 10px;
       background-color: #EEEBE6;
       border-radius: 5px;
       margin: 10px 0px;
@@ -44,14 +47,14 @@ body {
       border: none;
       border-radius: 5px;
       padding: 5px 10px;
-      height: 24px;
+      height: 30px;
       width: 30px; }
     #container #list-container .delete-btn {
-      margin: -2px 0px 2px 2px; }
+      margin: -4px 0px 2px 2px; }
       #container #list-container .delete-btn:hover {
         background-color: #CF4E44; }
     #container #list-container .edit-btn {
-      margin: -2px 2px; }
+      margin: -4px 2px; }
       #container #list-container .edit-btn:hover {
         background-color: #d8cfc3; }
 

@@ -34,9 +34,9 @@ body {
 		#list-input {
 			flex: 1;
 			padding: 10px;
-		    border-radius: 5px;
-		    border: 1px solid $color-dark;
-		    font-family: $font;
+		  border-radius: 5px;
+		  border: 1px solid $color-dark;
+		  font-family: $font;
 		}
 
 		button {
@@ -45,6 +45,8 @@ body {
 			border: 1px solid $color-dark;
 			background-color: $color-button;
 			color: $color-dark;
+			padding: 15px;
+			font-family: $font;
 
 			&:hover {
 				background-color: $color-hover;
@@ -55,10 +57,11 @@ body {
 
 	#list-container {
 		padding: 0;
-    	list-style-type: none;
+    list-style-type: none;
+    min-height: 300px;
 
 	    li {
-	    	padding: 10px;
+	    	padding: 20px 10px;
 		    background-color: $color-list-item;
 		    border-radius: 5px;
 				margin: 10px 0px;
@@ -71,12 +74,12 @@ body {
 		    border: none;
 		    border-radius: 5px;
 				padding: 5px 10px;
-				height: 24px;
+				height: 30px;
     		width: 30px;
 	    }
 
 	    .delete-btn {
-	    	margin: -2px 0px 2px 2px;
+	    	margin: -4px 0px 2px 2px;
 
 	    	&:hover {
 	    		background-color: $color-delete-hover;
@@ -84,7 +87,7 @@ body {
 	    }
 
 	    .edit-btn {
-	    	margin: -2px 2px;
+	    	margin: -4px 2px;
 
 	    	&:hover {
 	    		background-color: $color-edit-hover;

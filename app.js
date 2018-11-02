@@ -1,16 +1,14 @@
 $(document).ready(function(){
 
+var buttons = '<button class="delete-btn"><i class="fas fa-times"></i></button><button class="edit-btn"><i class="fas fa-pencil-alt"></i></button>';
+
 // READ ITEMS
 var getData = function() {
   return JSON.parse(localStorage.getItem('todo-items'));
 }
 
-var buttons = '<button class="delete-btn"><i class="fas fa-times"></i></button><button class="edit-btn"><i class="fas fa-pencil-alt"></i></button>'
-
-
 // DELETE INDIVIDUAL ITEM
 var handleDeleteClick = function() {
-  console.log("clicked")
   var $item = $(this).parent();
   var id = $item.data("todoid");
   var data = getData();
@@ -24,6 +22,31 @@ var handleDeleteClick = function() {
   $item.remove();
 }
 
+// EDIT ITEM
+var handleEditClick = function() {
+  var $li = $(this).parent();
+  var $span = $li.children(':first-child');
+  if ($(this).html() === '<i class="fas fa-pencil-alt"></i>') {
+    $(this).html('<i class="far fa-save"></i>');
+    $span.attr('contenteditable', 'true');
+    $span.focus();
+  } else {
+    $(this).html('<i class="fas fa-pencil-alt"></i>');
+    $span.attr('contenteditable', 'false');
+    var $text = $span.text(); // get contents of current list item span
+    var data = getData();
+    var id = $li.attr("data-todoid");
+
+    data.map(obj => {
+      if (obj["id"] == id) {
+        obj["name"] = $text;
+      }
+    })
+    localStorage.setItem('todo-items', JSON.stringify(data));
+
+  }
+}
+
 // READ ON PAGE LOAD
 var readItems = function() {
   if (localStorage.getItem('todo-items') && $('#list-container').is(':empty')) {
@@ -33,13 +56,13 @@ var readItems = function() {
       $('#list-container').append(li);
     });
     $('.delete-btn').on("click", handleDeleteClick);
+    $('.edit-btn').on("click", handleEditClick);
   }
 }
 
 readItems();
 
 // CREATE ITEM
-
   var addItem = function(e){
     e.preventDefault();
     var curTextValue = $('#list-input').val(); // reading from <input>
@@ -54,7 +77,6 @@ readItems();
       // Take the array out of localStorage & JSON.parse it
       var data = getData();
       var length = data.length;
-      console.log(length);
       if (length > 0) {
         var nextID = data[length - 1].id + 1;
       } else {
@@ -66,15 +88,14 @@ readItems();
 
       // JSON.stringify it & save it back in
       localStorage.setItem('todo-items', JSON.stringify(data));
-      // localStorage.setItem('todo-items', '{"1": {"name": "Walk dog", "completed" : false}, "2": {"name": "Wash dishes", "completed" : false}}')
     }
 
     var li = `<li id="item-${nextID}" data-todoid="${nextID}"><span>${curTextValue}</span>${buttons}</li>`;
     $('#list-container').append(li);
 
     $('#item-' + nextID + ' .delete-btn').on("click", handleDeleteClick);
+    $('#item-' + nextID + ' .edit-btn').on("click", handleEditClick);
     
-    //window.location.reload(true);
     $('#list-input').val("");
   };
 
@@ -82,28 +103,9 @@ readItems();
   $("#add-text-btn").on("click", addItem);
 
 // DELETE ALL ITEMS AT ONCE
-
-  // event listener
   $("#clear-cache-btn").on("click", function(){
     localStorage.clear()
   });
 
-// EDIT ITEM
-
-  $('.edit-btn').on("click", function() {
-
-    if ($(this).html() === '<i class="far fa-save"></i>') {
-      $(this).html('<i class="fas fa-pencil-alt"></i>');
-
-      // make span un-editable again
-      // save text info to appropriate part of object in localStorage
-    }
-
-    if ($(this).html() === '<i class="fas fa-pencil-alt"></i>') {
-      $(this).html('<i class="far fa-save"></i>');
-      $(this).parent().children(':first-child').attr('contenteditable', 'true');
-    }
-
-  })
 
 });

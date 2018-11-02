@@ -11,17 +11,17 @@ Requirements:
 
 ### CRUD App: To Do
 
-#### Basic Improvments (requirements)
+#### Basic Requirements
 
-- [ ] create indivdiual items
-- [ ] delete individual items
-- [ ] edit individual items
+- [x] create individual items
+- [x] delete individual items
+- [x] edit individual items
 
 ##### Notes
 - [ ] Keep DOM and localStorage matching 
-- [ ] Remember event Delegation when adding new items to .show-text
-- [ ] make sure we do not duplicate data
-- [ ] add different values to the item
+- [ ] Remember event delegation when adding new items
+- [ ] Make sure we do not duplicate data
+- [ ] Add different values to the item
 
   ex.
 ```javascript
@@ -43,5 +43,5 @@ Requirements:
 - [ ] bootstrap/material (css library)
 
 #### My Spin
-(to be filled out by you)
-
+- CSS preprocessing with SASS
+- Icons from FontAwesome
